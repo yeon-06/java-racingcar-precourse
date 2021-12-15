@@ -1,20 +1,23 @@
-package racingcar;
+package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.view.InputView;
+import racingcar.model.Car;
+import racingcar.model.Winners;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RacingSystem {
+public class RacingController {
     private static final int MIN_NUMBER = 0;
     private static final int MAX_NUMBER = 9;
 
-    private InputSystem inputSystem = new InputSystem();
+    private InputView inputSystem = new InputView();
     private List<Car> cars = new ArrayList<>();
     private Winners winners = new Winners();
     private int cnt = 0;
 
-    public RacingSystem() {
+    public RacingController() {
     }
 
     public void input() {

@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.jupiter.api.Test;
+import racingcar.model.Winners;
 
 import static org.junit.jupiter.api.Assertions.*;
 
