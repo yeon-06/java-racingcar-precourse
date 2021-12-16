@@ -5,9 +5,9 @@ import racingcar.model.Cars;
 
 import java.util.regex.Pattern;
 
+import static racingcar.utils.ErrorConstants.*;
+
 public class Validator {
-    private static final String ERROR_CNT_SENTENCE = "[ERROR] 올바른 숫자를 입력하세요.";
-    private static final String ERROR_CAR_SENTENCE = "[ERROR] 올바른 자동차 이름을 입력하세요.";
     private static final String SEPARATOR = ",";
     private static final String NUMBER_REGAX = "^[0-9]*$";
     private static final int MAX_LENGTH = 5;
