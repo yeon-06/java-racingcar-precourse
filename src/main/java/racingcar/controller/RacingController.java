@@ -1,16 +1,15 @@
 package racingcar.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.model.Cars;
-import racingcar.view.InputView;
-import racingcar.model.Car;
 import racingcar.model.Winners;
+import racingcar.view.InputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingController {
-    private InputView inputSystem = new InputView();
+    private static final String WINNER_SENTENCE = "최종 우승자 : ";
+    private static final InputView inputSystem = new InputView();
+
     private Cars cars = new Cars();
     private Winners winners;
     private int cnt = 0;
@@ -32,7 +31,7 @@ public class RacingController {
     }
 
     public void printWinners() {
-        System.out.println("최종 우승자 : " + winners.toString());
+        System.out.println(WINNER_SENTENCE + winners.toString());
     }
 
     private void setWinners(List<String> winnerList) {

@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    List<Car> cars;
+    private static final String NOW_CARS_SENTENCE = " (현재 자동차 목록 = ";
+    private static final String CLOSE_BRACKET = ")";
+
+    private List<Car> cars = new ArrayList<>();
 
     public Cars() {
-        cars = new ArrayList<>();
     }
 
     public void addNewCar(Car car) {
@@ -22,9 +24,9 @@ public class Cars {
     }
 
     public String getNowCarList() {
-        StringBuilder sb = new StringBuilder(" (현재 자동차 목록 = ");
+        StringBuilder sb = new StringBuilder(NOW_CARS_SENTENCE);
         sb.append(getNamesString())
-                .append(")");
+                .append(CLOSE_BRACKET);
         return sb.toString();
     }
 

@@ -7,6 +7,8 @@ public class Car {
     private static final int MAX_NUMBER = 9;
     private static final int STANDARD_NUMBER = 4;
     private static final int START_POSITION = 0;
+    private static final String STATUS_BAR = "-";
+    private static final String SEPARATOR = " : ";
 
     private final String name;
     private int position;
@@ -39,10 +41,10 @@ public class Car {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name).append(" : ");
+        sb.append(name).append(SEPARATOR);
 
         for (int i = 0; i < position; i++) {
-            sb.append("-");
+            sb.append(STATUS_BAR);
         }
         return sb.toString();
     }
