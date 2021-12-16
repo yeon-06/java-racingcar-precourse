@@ -2,23 +2,20 @@ package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.model.Car;
-import racingcar.view.InputView;
-
-import java.util.ArrayList;
-import java.util.List;
+import racingcar.model.Cars;
+import racingcar.utils.Validator;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class InputSystemTest {
-    private InputView system;
-    private List<Car> cars;
+class ValidatorTest {
+    private Validator system;
+    private Cars cars;
 
     @BeforeEach
     void initial() {
-        system = new InputView();
-        cars = new ArrayList<>();
+        system = new Validator();
+        cars = new Cars();
     }
 
     @Test
@@ -42,7 +39,6 @@ class InputSystemTest {
 
     @Test
     void 올바른_숫자_입력() {
-        InputView system = new InputView();
         assertDoesNotThrow(() -> system.checkNumber("123"));
     }
 }

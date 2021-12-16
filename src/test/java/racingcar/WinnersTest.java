@@ -3,16 +3,19 @@ package racingcar;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Winners;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class WinnersTest {
     @Test
     void toString메소드_테스트() {
-        Winners winners = new Winners();
-        winners.addWinner("A");
-        winners.addWinner("B");
-        winners.addWinner("C");
+        List<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
 
-        assertEquals(winners.toString(), "A, B, C");
+        assertEquals(new Winners(list).toString(), "A,B,C");
     }
 }
