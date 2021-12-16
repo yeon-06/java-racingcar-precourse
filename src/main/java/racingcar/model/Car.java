@@ -24,23 +24,20 @@ public class Car {
         return name;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public void go() {
         int random = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
         if (isBiggerThanStandard(random)) {
             position++;
         }
-        System.out.println(getCarStatus());
+        System.out.println(this);
     }
 
     public boolean isWinner(int cnt) {
         return position == cnt;
     }
 
-    public String getCarStatus() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name).append(" : ");
 
@@ -48,13 +45,6 @@ public class Car {
             sb.append("-");
         }
         return sb.toString();
-    }
-
-    public String getWinnersName(int cnt) {
-        if (position == cnt) {
-            return name;
-        }
-        return null;
     }
 
     private boolean isBiggerThanStandard(int num) {
