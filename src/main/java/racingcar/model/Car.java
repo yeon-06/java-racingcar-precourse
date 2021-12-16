@@ -1,6 +1,10 @@
 package racingcar.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Car {
+    private static final int MIN_NUMBER = 0;
+    private static final int MAX_NUMBER = 9;
     private static final int STANDARD_NUMBER = 4;
     private static final int START_POSITION = 0;
 
@@ -24,10 +28,16 @@ public class Car {
         return position;
     }
 
-    public void go(int random) {
+    public void go() {
+        int random = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
         if (isBiggerThanStandard(random)) {
             position++;
         }
+        System.out.println(getCarStatus());
+    }
+
+    public boolean isWinner(int cnt) {
+        return position == cnt;
     }
 
     public String getCarStatus() {
@@ -38,6 +48,13 @@ public class Car {
             sb.append("-");
         }
         return sb.toString();
+    }
+
+    public String getWinnersName(int cnt) {
+        if (position == cnt) {
+            return name;
+        }
+        return null;
     }
 
     private boolean isBiggerThanStandard(int num) {

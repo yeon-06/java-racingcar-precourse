@@ -2,8 +2,8 @@ package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.model.Car;
+import racingcar.model.Cars;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputView {
@@ -19,7 +19,7 @@ public class InputView {
     public InputView() {
     }
 
-    public void inputCarName(List<Car> cars) {
+    public void inputCarName(Cars cars) {
         String input = write(INPUT_CAR_SENTENCE);
         try {
             checkValidName(input, cars);
@@ -46,27 +46,14 @@ public class InputView {
         }
     }
 
-    public void checkValidName(String input, List<Car> cars) {
+    public void checkValidName(String input, Cars cars) {
         String[] nameArray = input.split(SEPARATOR, NEGATIVE_NUMBER);
         for (String name : nameArray) {
             if (isInvalidName(name, cars)) {
-                throw new IllegalArgumentException(ERROR_CAR_SENTENCE + getNowCarList(cars));
+                throw new IllegalArgumentException(ERROR_CAR_SENTENCE + cars.getNowCarList());
             }
-            cars.add(new Car(name));
+            cars.addNewCar(new Car(name));
         }
-    }
-
-    private String getNowCarList(List<Car> cars) {
-        StringBuilder sb = new StringBuilder(" (현재 자동차 목록 = ");
-        int len = cars.size();
-        if (len > 0) {
-            sb.append(cars.get(0).getName());
-        }
-        for (int i = 1; i < len; i++) {
-            sb.append(", ").append(cars.get(i).getName());
-        }
-        sb.append(")");
-        return sb.toString();
     }
 
     private String write(String sentence) {
@@ -82,15 +69,15 @@ public class InputView {
         return Long.parseLong(str) <= Integer.MAX_VALUE;
     }
 
-    private boolean isInvalidName(String name, List<Car> cars) {
+    private boolean isInvalidName(String name, Cars cars) {
         return isDuplicated(name, cars)
                 || isOverMaxCnt(name)
                 || isEmptyString(name);
     }
 
-    private boolean isDuplicated(String name, List<Car> cars) {
-        for (Car car : cars) {
-            if (name.equals(car.getName())) {
+    private boolean isDuplicated(String name, Cars cars) {
+        for (String carName : cars.getNameList()) {
+            if (name.equals(carName)) {
                 return true;
             }
         }

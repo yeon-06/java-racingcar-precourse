@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.model.Car;
 import racingcar.model.Winners;
@@ -9,12 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingController {
-    private static final int MIN_NUMBER = 0;
-    private static final int MAX_NUMBER = 9;
-
     private InputView inputSystem = new InputView();
-    private List<Car> cars = new ArrayList<>();
-    private Winners winners = new Winners();
+    private Cars cars = new Cars();
+    private Winners winners;
     private int cnt = 0;
 
     public RacingController() {
@@ -26,24 +24,18 @@ public class RacingController {
     }
 
     public void racingStart() {
-        while (winners.getWinnersCnt() == 0) {
-            for (Car car : cars) {
-                int random = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
-                car.go(random);
-                System.out.println(car.getCarStatus());
-                putWinner(car.getName(), car.getPosition());
-            }
+        while (!cars.haveWinner(cnt)) {
+            cars.racing();
             System.out.println();
         }
+        setWinners(cars.getWinners(cnt));
     }
 
     public void printWinners() {
         System.out.println("최종 우승자 : " + winners.toString());
     }
 
-    private void putWinner(String name, int position) {
-        if (position == cnt) {
-            winners.addWinner(name);
-        }
+    private void setWinners(List<String> winnerList) {
+        this.winners = new Winners(winnerList);
     }
 }
